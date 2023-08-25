@@ -112,11 +112,11 @@
 
     <script>
         function hitungHasil() {
-            var namaMahasiswa = document.getElementById("name").value;
-            var mataKuliah = document.getElementById("course").value;
-            var grade = document.getElementById("grade").value;
+            let namaMahasiswa = document.getElementById("name").value;
+            let mataKuliah = document.getElementById("course").value;
+            let grade = document.getElementById("grade").value;
 
-            var nilaiMapping = {
+            let nilaiMapping = {
                 'A': 4,
                 'B': 3,
                 'c': 2,
@@ -124,15 +124,15 @@
                 'E': 0
             };
 
-            var nilaiAngka = nilaiMapping[grade];
-            var hasil = (nilaiAngka * 1.0);
+            let nilaiAngka = nilaiMapping[grade];
+            let hasil = (nilaiAngka * 1.0);
 
-            var tabelHasil = document.getElementById("hasilData");
-            var row = tabelHasil.insertRow(-1);
-            var cellNamaMahasiswa = row.insertCell(0);
-            var cellMataKuliah = row.insertCell(1);
-            var cellGrade = row.insertCell(2);
-            var cellNilaiRataRata = row.insertCell(3);
+            let tabelHasil = document.getElementById("hasilData");
+            let row = tabelHasil.insertRow(-1);
+            let cellNamaMahasiswa = row.insertCell(0);
+            let cellMataKuliah = row.insertCell(1);
+            let cellGrade = row.insertCell(2);
+            let cellNilaiRataRata = row.insertCell(3);
 
             cellNamaMahasiswa.innerHTML = namaMahasiswa;
             cellMataKuliah.innerHTML = mataKuliah;
