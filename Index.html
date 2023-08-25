@@ -1,158 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <title>Form dan Table native</title>
+    <title>Hasil Nilai</title>
 </head>
 <body>
-
+    
     <style>
+        
         body {
             background: #272829;
         }
 
-        .box-body {
-            padding: 20px;
-            width: 760px;
-            height: max-content;
-            position: absolute;
-            left: 26%;
-            top: 10%;
-            background: #FFF6E0;
-        }
-        
-        #input-nilai {
-            padding: 5%;
-            margin-top: 5%;
-            position: relative;
-            width: 90%;
-            left: 5%;
-            top: 10%;
+        .container {
             background: #fff;
+            margin: 5%;
+            padding: 20px;
+            width: 90%;
+            height: 80vh;
         }
 
-        #input-nilai table td {
-            padding: 10px;
-            position: relative;
-            left: 15%;
-        }
-
-        #input-nilai label {
+        label {
+            display: block;
+            margin-bottom: 5px;
             font-weight: bold;
         }
 
-        #input-nilai input {
+        input[type='text'], select {
             width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
         }
 
-        #input-nilai select {
+        button[type='submit'] {
+            display: block;
+            border: 1px solid #ccc;
+            background: #61677A;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        table {
+            display: flexbox;
             width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
         }
-
-        #data-nilai {
-            margin-top: 30px;
-            background: #fff;
-            width: 90%;
-            position: relative;
-            left: 5%;
-            top: 20%;
-        }
-
-        #data-nilai thead th {
-            text-align: center;
-            padding: 10px;
+        
+        th {
             background: #61677A;
             color: #fff;
         }
 
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            padding: 6px 18px;
+            background: #61677A;
+            color: #fff;
+            font-weight: 600;
+            border: 1px solid #ccc;
+        }
+
     </style>
-    
-    <div class="box-body">
-        <form id="input-nilai">
-            <table>
-                <tr>
-                    <td>
-                        <label for="nama">Nama</label>
-                    </td>
-                    <td>:</td>
-                    <td>
-                        <input type="text" id="name" name="nama">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="nomor-induk">NIM</label>
-                    </td>
-                    <td>:</td>
-                    <td>
-                        <input type="text" id="nomor-induk" name="nim">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="mata-kuliah">Mata Kuliah</label>
-                    </td>
-                    <td>:</td>
-                    <td>
-                        <select id="mata-kuliah" name="matkul">
-                            <option value="">None</option>
-                            <option value="matkul1">Algoritma dan Pemrograman 1A</option>
-                            <option value="matkul2">Algoritma dan Pemrograman 1B</option>
-                            <option value="matkul3">Algoritma dan Pemrograman 1C</option>
-                            <option value="matkul4">Algoritma dan Pemrograman 2A</option>
-                            <option value="matkul5">Algoritma dan Pemrograman 2B</option>
-                            <option value="matkul6">Algoritma dan Pemrograman 2C</option>
-                            <option value="matkul7">Algoritma dan Pemrograman 3</option>
-                            <option value="matkul8">Perancangan Analisi Algoritma</option>
-                            <option value="matkul9">Pemrograman Web</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="nilai">Nilai</label>
-                    </td>
-                    <td>:</td>
-                    <td>
-                        <select id="nilai" name="nilai">
-                            <option value="">Pilih Nilai</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="E">E</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="3">
-                        <button type="submit" onclick="addGradeData()">Hitung</button>
-                    </td>
-                </tr>
-            </table>
+
+    <div class="container">
+        <form id="inputData">
+            <label for="name">Nama Mahasiswa : </label>
+            <input type="text" id="name" required>
+
+            <label for="course">Mata Kuliah : </label>
+            <input type="text" id="course" required>
+
+            <label for="grade">Grade</label>
+            <select name="grade" id="grade" required>
+                <option value=""></option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+            </select>
+
+            <button type="button" onclick="hitungHasil()">Hasil</button>
         </form>
 
-        <table id="data-nilai">
-            <thead>
-                <th>No</th>
-                <th>Nomor Induk</th>
-                <th>Nama</th>
+        <table id="hasilData">
+            <tr>
+                <th>Nama Mahasiswa</th>
                 <th>Mata Kuliah</th>
-                <th>Nilai</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td id="nomor"></td>
-                    <td id="nomor-induk"></td>
-                    <td id="name"></td>
-                    <td id="mata-kuliah"></td>
-                    <td id="nilai"></td>
-                </tr>
-            </tbody>
+                <th>Grade</th>
+                <th>Nilai Rata-Rata</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </table>
     </div>
+
+    <script>
+        function hitungHasil() {
+            var namaMahasiswa = document.getElementById("name").value;
+            var mataKuliah = document.getElementById("course").value;
+            var grade = document.getElementById("grade").value;
+
+            var nilaiMapping = {
+                'A': 4,
+                'B': 3,
+                'c': 2,
+                'D': 1,
+                'E': 0
+            };
+
+            var nilaiAngka = nilaiMapping[grade];
+            var hasil = (nilaiAngka * 1.0);
+
+            var tabelHasil = document.getElementById("hasilData");
+            var row = tabelHasil.insertRow(-1);
+            var cellNamaMahasiswa = row.insertCell(0);
+            var cellMataKuliah = row.insertCell(1);
+            var cellGrade = row.insertCell(2);
+            var cellNilaiRataRata = row.insertCell(3);
+
+            cellNamaMahasiswa.innerHTML = namaMahasiswa;
+            cellMataKuliah.innerHTML = mataKuliah;
+            cellGrade.innerHTML = grade;
+            cellNilaiRataRata.innerHTML = hasil.toFixed(2);
+
+            document.getElementById("inputData").reset;
+        }
+    </script>
 
 </body>
 </html>
